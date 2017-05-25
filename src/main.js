@@ -18,6 +18,7 @@ import VueResource from 'vue-resource'
 import home from './component/home.vue'
 import timeEntries from './component/timeEntries.vue'
 import logTime from './component/logTime.vue'
+import dayLearn from './component/dayLearn.vue'
 // import load from '../static/bootstrap/c.scss'
 // import load from '../static/bootstrap'
 // require('../static/bootstrap/bootstrap.min.css');
@@ -30,6 +31,11 @@ const router = new VueRouter({
 	mode:'history',
 	base:__dirname,
 	routes:[
+		// {
+		// 	//这是一个利用重定向实现刚进入应用就渲染某个路由组件的
+		// 	path:'/',
+		// 	redirect:'/time-entries'
+		// },
 		{
 			path:'/',
 			component:home
@@ -48,12 +54,23 @@ const router = new VueRouter({
 					component:logTime
 				}
 			]
+		},
+		{
+			path:'/day-learn',
+			component:dayLearn,
+			children:[
+				{
+					path:'',
+					component:dayLearn
+				}
+			]
 		}
 
 	]
 });
+//router.push('/time-entries');
 new Vue({
-  el: '#app',
+  el: '#appy',
   router:router,
   render: h => h(App)
 })

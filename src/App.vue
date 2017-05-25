@@ -1,16 +1,3 @@
-<!-- <template>
-  <div id="app">
-    <h1>{{msg}}</h1>
-    <test-com></test-com>
-     <ul>
-      <li><router-link to="/first">点我到第一页</router-link></li>
-      <li><router-link to="/first/article">点我到第一页（子路由）</router-link></li>
-      <li><router-link to="/second">点我到第二页</router-link></li>
-      <router-view class="view"></router-view>
-    </ul>
-  </div>
-</template> -->
-
 <template>
   <div id="wrapper">
     <nav class="navbar navbar-default">
@@ -21,6 +8,7 @@
         <ul class="nav navbar-nav">
           <li><router-link to="/home">首页</router-link></li>
           <li><router-link to="/time-entries">计划列表</router-link></li>
+          <li><router-link to="/day-learn">今天学了啥</router-link></li>
         </ul>
       </div>
     </nav>
@@ -40,6 +28,8 @@ export default {
   name: 'app',
   data () {
     return {
+      selected:[],
+      show:true,
       msg: 'Hello World',
       totalTime:2
     }
@@ -47,11 +37,18 @@ export default {
   //components:{timeEntries,home,sidebar}
   components:{sidebar},
   methods:{
+    sh:function(){
+      console.log(this);
+    },
     deleteTime(timeEntry){
       this.totalTime -=parseFloat(timeEntry.totalTime);
     },
     timeUpdate(timeEntry){
       this.totalTime +=parseFloat(timeEntry.totalTime);
+    },
+    //如下是一些实现vue的组件过渡的钩子函数(再次强调一下，钩子函数可以简单理解为特定事件下所做的事情(约定好的))
+    beforeEnter:function(){
+
     }
   }
   
@@ -67,5 +64,10 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
+.fade-enter-active, .fade-leave-active{
+  transition: all 0.5s ease     
+}
+.fade-enter, .fade-leave-active{
+  opacity: 0;color:pink
+}
 </style>
