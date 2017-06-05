@@ -16,6 +16,10 @@
 				msg:typeof this
 			}
 		},
+		mounted:function(){
+			this.$store.commit('test',8);
+			console.log(this.$store.state.data);
+		},
 		methods:{
 			search:function(){
 				console.log(this.$el);

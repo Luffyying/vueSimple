@@ -36,6 +36,9 @@ export default {
   },
   //components:{timeEntries,home,sidebar}
   components:{sidebar},
+  mounted:function(){
+    console.log(this.$store.state.count);
+  },
   methods:{
     sh:function(){
       console.log(this);

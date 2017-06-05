@@ -11,6 +11,7 @@ webpack去解析.vue文件*/
 /*关于import的事*/
 /*各种Loader的作用就是将各种形式的资源都作为资源视为模块，css,sass,json等*/
 import Vue from 'vue'
+import Vuex from 'vuex'
 //引入路由及相应组件
 import App from './App.vue'
 import VueRouter from "vue-router"
@@ -19,12 +20,15 @@ import home from './component/home.vue'
 import timeEntries from './component/timeEntries.vue'
 import logTime from './component/logTime.vue'
 import dayLearn from './component/dayLearn.vue'
+import mystore from '../vuex/store.js'
+import h from './App.vue'
 // import load from '../static/bootstrap/c.scss'
 // import load from '../static/bootstrap'
 // require('../static/bootstrap/bootstrap.min.css');
-import store from '../vuex/store'//引入vuex的store
+//import stores from '../vuex/store'//引入vuex的store
 Vue.use(VueRouter);//注册vue-router
 Vue.use(VueResource);//应用于动态申请数据
+Vue.use(Vuex);
 
 //创建一个路由器实例，且配置路由规则
 const router = new VueRouter({
@@ -69,8 +73,11 @@ const router = new VueRouter({
 	]
 });
 //router.push('/time-entries');
+//创建状态实例
+let store = new Vuex.Store(mystore);
 new Vue({
   el: '#appy',
   router:router,
+  store:store,
   render: h => h(App)
 })
